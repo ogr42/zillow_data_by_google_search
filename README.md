@@ -1,9 +1,13 @@
 # Zillow data by google search
-This script gets zillow.com data ONLY by Google search.
+## This script gets zillow.com data ONLY by Google search.
 
-It gets data (addresses of property) in .csv formate from the file 'properties_sample.csv'.
+The site zillow.com prohibits a data scraping. It shows the captcha, blocks ip-address etc.
 
-The script outputs data for each property:
+But you can get this data!
+
+This script gets data (addresses of property) in .csv format from the file 'properties_sample.csv'.
+
+The script outputs data for each property address:
 - address (build & street, city, state, zip_code);
 - link to zillow.com;
 - zpid from zillow.com;
