@@ -1,4 +1,4 @@
-# zillow_data_by_google_search
+# Zillow data by google search
 This script gets zillow.com data ONLY by Google search.
 
 It gets data (addresses of property) in .csv formate from the file 'properties_sample.csv'.
