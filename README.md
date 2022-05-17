@@ -20,3 +20,5 @@ The script outputs data for each property address:
 It outputs data in .csv formate to the file 'properties_data.csv' and to print.
 
 Download this script to the directorie where is the input file 'properties_sample.csv'.
+
+In row 'item_search_class = '<ENTER YOUR GOOGLE SEARCH CLASS>' ' paste html class wich Google Search gave to result search items.  
