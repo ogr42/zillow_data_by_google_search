@@ -31,7 +31,7 @@ def get_soup(query):
 
 def property_data(soup):
   # Parse property data from a google search page
-  data = soup.find(class_="ZINbbc luh4tb xpd O9g5cc uUPGi")
+  data = soup.find(class_=item_search_class)
   link = data.find('a').get('href').split('=')[1].split('&')[0]
   zpid = link.split('/')[-2].split('_')[0]
   text = data.text.split()
@@ -81,6 +81,7 @@ def main():
 #config
 input_file = 'properties_sample.csv'
 output_file = 'properties_data.csv'
+item_search_class = '<ENTER YOUR GOOGLE SEARCH CLASS>'
 
 if __name__ == "__main__":
   main()
