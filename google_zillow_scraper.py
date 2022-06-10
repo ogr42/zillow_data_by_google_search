@@ -5,7 +5,7 @@ import csv
 import requests
 
 def get_addresses(input_file):
-  # Get a list of addresses from the input file 'properties_sample.csv'
+  # Get a list of addresses from the input file
   with open(input_file, 'r') as f:
     read = csv.reader(f, delimiter=',', quotechar=',',
                         quoting=csv.QUOTE_MINIMAL)
@@ -42,11 +42,11 @@ def property_data(soup):
   return home_data
 
 def addr_data(address, data):
-  # It merges the property data and the property address
+  # Merge the property data and the property address
   return address + data
 
 def output_to_file(property_array):
-  # It outputs the property data to the output file 'properties_data.csv'
+  # Output a property data to the output file
   with open(output_file, 'w', newline='') as f:
     writer = csv.writer(f)
     writer.writerows(property_array)
@@ -54,7 +54,7 @@ def output_to_file(property_array):
 def main():
   # The 'main' function integrares an other functions
   addresses = get_addresses(input_file)
-  querie = queries(addresses)
+  query = queries(addresses)
   # Headers of the table
   property_array = [['build&street',
                      'city',
@@ -68,8 +68,8 @@ def main():
                      'beds',
                      'baths'
                     ]] 
-  for i, query in enumerate(querie):
-    soup = get_soup(query)
+  for i, q in enumerate(query):
+    soup = get_soup(q)
     data = property_data(soup)
     data_full = addr_data(addresses[i], data)
     property_array.append(data_full)
