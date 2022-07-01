@@ -13,12 +13,13 @@ The script outputs data for each property address:
 - zpid from zillow.com;
 - for sale or not for sale;
 - square:
-- a number of families;
-- a number of beds;
-- a number of baths.
+- number of families;
+- number of beds;
+- number of baths.
 
-It outputs data in .csv format to the file 'properties_data.csv' and to print.
+The script outputs data to the file 'properties_data.csv' and to print.
 
-Symply copy this script to the directory where is the input file 'properties_sample.csv' and run it.
+Copy this script to the directory where is the input file 'properties_sample.csv' and simply run it!
 
-In row #84 'item_search_class = '<ENTER YOUR GOOGLE SEARCH CLASS>' ' paste html class which Google Search gave to result from search items.  
+© Alex Romanoff, github.com/ogr42
+
