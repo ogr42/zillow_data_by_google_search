@@ -44,7 +44,7 @@ Parse property data from a google search page
 """
   data = soup.find('h3')
   head = data.text.split('|')
-  mls = head[head.index('MLS')+1][1:8] if 'MLS' in head else ''
+  mls = head[1].split('#')[1].strip() if 'MLS' in head[1] else ''
   address = head[0].strip()
   link = data.find_parent().get('href').split('=')[1][:-3]
   zpid = link.split('/')[-2].split('_')[0]
@@ -70,7 +70,7 @@ Output property data to the output file
 
 def main():
 """
-Integrate all other functions
+Integrate all functions
 """
   addresses = get_addresses(input_file)
   query = queries(addresses)
