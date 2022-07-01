@@ -22,5 +22,7 @@ The script outputs data to the file 'properties_data.csv' and to print.
 Copy this script to the directory where is the input file 'properties_sample.csv' and simply run it!
 
 © Alex Romanoff, github.com/ogr42
+
 My Upwork: https://www.upwork.com/freelancers/~016af1ee0d7ed4ac4a
+
 E-mail: ar.palettesoft@gmail.com 
