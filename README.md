@@ -5,9 +5,9 @@ The site zillow.com prohibits data scraping. It shows the captcha, blocks IP-add
 
 But you can get this data!
 
-This script gets data (addresses of property) in .csv format from the input file 'properties_sample.csv'.
+This script gets from the input file 'properties_sample.csv' data (addresses of property) in .csv format .
 
-The script outputs data for each property address:
+The script gets and outputs data for each address:
 - address (build & street, city, state, zip_code);
 - link to zillow.com;
 - zpid of zillow.com;
