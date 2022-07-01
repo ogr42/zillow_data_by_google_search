@@ -1,11 +1,16 @@
-# Install the BeautifulSoup module using CLI command: pip install beautifulsoup4 
+"""
+Install the BeautifulSoup using CLI command:
+pip install beautifulsoup4
+""" 
 
 from bs4 import BeautifulSoup
 import csv
 import requests
 
 def get_addresses(input_file):
-"""Get a list of addresses from the input file"""
+"""
+Get the address list from the input file
+"""
   with open(input_file, 'r') as f:
     read = csv.reader(f, delimiter=',', quotechar=',',
                         quoting=csv.QUOTE_MINIMAL)
@@ -13,7 +18,9 @@ def get_addresses(input_file):
   return address_list[1:]
 
 def queries(addresses):
-  # Create a list of links for a google search
+"""
+Create a links list for google search
+"""
   url_google = 'https://www.google.com/search?q='
   queries = []
   for address in addresses:
@@ -24,49 +31,61 @@ def queries(addresses):
   return queries
 
 def get_soup(query):
-  # Get a google search page for a single address
+"""
+Get a google search page for a single address
+"""
   resp = requests.get(query, timeout= 3.1)
   soup = BeautifulSoup(resp.text, "html.parser")
   return soup
 
 def property_data(soup):
-  # Parse property data from a google search page
-  data = soup.find(class_=item_search_class)
-  link = data.find('a').get('href').split('=')[1].split('&')[0]
+"""
+Parse property data from a google search page
+"""
+  data = soup.find('h3')
+  head = data.text.split('|')
+  mls = head[head.index('MLS')+1][1:8] if 'MLS' in head else ''
+  address = head[0].strip()
+  link = data.find_parent().get('href').split('=')[1][:-3]
   zpid = link.split('/')[-2].split('_')[0]
-  text = data.text.split()
-  #mls = text[text.index('MLS')+1][1:8]
+  text = data.find_parent().find_parent().find_parent().find_all()[5].text.split()
   square, family, beds, baths = [text[text.index(q)-1] for q in ['Square', 'family', 'beds,', 'baths']]
   for_sale = ' '.join(text[text.index('is')+1:text.index('The')])[:-1]
-  home_data = [link, zpid, for_sale, square, family, beds, baths]
+  home_data = [link, zpid, mls, square, family, beds, baths, for_sale]
   return home_data
 
 def addr_data(address, data):
-  # Merge the property data and the property address
+"""
+Merge property data and property address
+"""
   return address + data
 
 def output_to_file(property_array):
-  # Output a property data to the output file
+"""
+Output property data to the output file
+"""
   with open(output_file, 'w', newline='') as f:
     writer = csv.writer(f)
     writer.writerows(property_array)
 
 def main():
-  # The 'main' function integrares an other functions
+"""
+Integrate all other functions
+"""
   addresses = get_addresses(input_file)
   query = queries(addresses)
-  # Headers of the table
+  # Headers of the output table
   property_array = [['build&street',
                      'city',
                      'state',
                      'zip_code',
                      'link',
                      'zpid',
-                     'for_sale',
                      'square feet',
                      'families',
                      'beds',
-                     'baths'
+                     'baths',
+                     'for_sale'
                     ]] 
   for i, q in enumerate(query):
     soup = get_soup(q)
@@ -74,16 +93,19 @@ def main():
     data_full = addr_data(addresses[i], data)
     property_array.append(data_full)
   output_to_file(property_array) # Output to file
-  # Print output array
+  # Print the output array
   for row in property_array:
     print(row)
 
-#config
+""" 
+Configuration
+"""
 input_file = 'properties_sample.csv'
 output_file = 'properties_data.csv'
-item_search_class = '<ENTER YOUR GOOGLE SEARCH CLASS>'
+
 
 if __name__ == "__main__":
   main()
 
-# Author: github.com/ogr42
+# © Alex Romanoff, github.com/ogr42
+# My Upwork: https://www.upwork.com/freelancers/~016af1ee0d7ed4ac4a
