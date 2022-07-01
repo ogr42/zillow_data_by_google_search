@@ -5,7 +5,7 @@ import csv
 import requests
 
 def get_addresses(input_file):
-  # Get a list of addresses from the input file
+"""Get a list of addresses from the input file"""
   with open(input_file, 'r') as f:
     read = csv.reader(f, delimiter=',', quotechar=',',
                         quoting=csv.QUOTE_MINIMAL)
