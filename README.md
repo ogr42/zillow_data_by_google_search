@@ -11,7 +11,7 @@ The script gets and outputs data for each address:
 - address (build & street, city, state, zip_code);
 - link to zillow.com;
 - zpid of zillow.com;
-- # MLS;
+- MLS;
 - for sale or not for sale;
 - square:
 - number of families;
