@@ -10,7 +10,8 @@ This script gets data (addresses of property) in .csv format from the input file
 The script outputs data for each property address:
 - address (build & street, city, state, zip_code);
 - link to zillow.com;
-- zpid from zillow.com;
+- zpid of zillow.com;
+- # MLS;
 - for sale or not for sale;
 - square:
 - number of families;
